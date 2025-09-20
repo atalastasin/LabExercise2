@@ -11,6 +11,7 @@
       <th>Year Level</th>
       <th>Program</th>
       <th>Department</th>
+      <th>Number of Units</th>
     </tr>
   </thead>
   <tbody>
@@ -20,6 +21,7 @@
         <td><%= student.year_level%></td>
         <td><%= student.program%></td>
         <td><%= student.department.name%></td>
+        <td><%= student.number_of_units%></td>
         <td><%= link_to "Show this student",student %>
       </tr>
     <% end %>

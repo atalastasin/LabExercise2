@@ -27,6 +27,11 @@
   </div>
 
   <div>
+    <%= form.label :number_of_units, style: "display: block" %>
+    <%= form.number_field :number_of_units %>
+  </div>
+
+  <div>
     <%= form.label :department_id, "Department", style: "display: block" %>
     <%= form.collection_select :department_id, Department.all, :id, :name, prompt: "Select a department" %>
   </div>

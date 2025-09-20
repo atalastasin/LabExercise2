@@ -17,9 +17,16 @@
   </div>
 
   <div>
+    <%= form.label :number_of_units, style: "display: block" %>
+    <%= form.number_field :number_of_units %>
+  </div>
+
+  <div>
     <%= form.label :teacher_id, "Teacher", style: "display: block" %>
     <%= form.collection_select :teacher_id, Teacher.all, :id, :name, promt: "Select a teacher" %>
   </div>
+
+
 
   <div>
     <%= form.submit %>
