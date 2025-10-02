@@ -2,21 +2,15 @@
 
 <%= render @department %>
 
-<div>
-  <%= link_to "Edit this department", edit_department_path(@department) %> |
-  <%= link_to "Back to departments", departments_path %>
-
-  <%= button_to "Destroy this department", @department, method: :delete %>
-</div>
-
 <h3>List of Students:</h3>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>Program</th>
+      <th>Program</th
       <th>Year Level</th>
+      <th>Total Assessment</th>
     </tr>
   </thead>
   <tbody>
@@ -25,6 +19,7 @@
         <td><%= student.name %></td>
         <td><%= student.program %></td>
         <td><%= student.year_level %></td>
+        <td><%= student.total_assessment %></td>
       </tr>
     <% end %>
   </tbody>
@@ -39,6 +34,7 @@
       <th>Email</th>
       <th>Specilization</th>
       <th>Status</th>
+      <th>Monthly Salary</th>
     </tr>
   </thead>
   <tbody>
@@ -48,7 +44,41 @@
         <td><%= teacher.email%></td>
         <td><%= teacher.specialization%></td>
         <td><%= teacher.status %></td>
+        <td><%= teacher.monthly_salary %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<h3>List of Staffs:</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Monthly Salary</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @department.staffs.each do |staff| %>
+      <tr>
+        <td><%= staff.name%></td>
+        <td><%= staff.email%></td>
+        <td><%= staff.monthly_salary%></td>
+        <td><%= staff.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Number of Employee: <%= @department.employee_count %></h3>
+<h3>Number of Students: <%= @department.student_count %></h3>
+
+<div>
+  <%= link_to "Edit this department", edit_department_path(@department) %> |
+  <%= link_to "Back to departments", departments_path %>
+
+  <%= button_to "Destroy this department", @department, method: :delete %>
+</div>
