@@ -2,24 +2,15 @@
 
 <% content_for :title, "Departments" %>
 
-<h1>List of Departments</h1>
+<h1>Departments</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Location</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @departments.each do |department| %>
-      <tr>
-        <td><%= department.name%></td>
-        <td><%= department.location%></td>
-        <td><%= link_to "Show this department",department %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id="departments">
+  <% @departments.each do |department| %>
+    <%= render department %>
+    <p>
+      <%= link_to "Show this department", department %>
+    </p>
+  <% end %>
+</div>
 
 <%= link_to "New department", new_department_path %>
