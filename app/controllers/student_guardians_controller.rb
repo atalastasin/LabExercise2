@@ -25,8 +25,8 @@ class StudentGuardiansController < ApplicationController
 
     respond_to do |format|
       if @student_guardian.save
-        @student_guardian.guardian.increment!(:number_of_students)
-        @student_guardian.student.increment!(:number_of_guardians) 
+        @student_guardian.guardian.update!(:number_of_students)
+        @student_guardian.student.update!(:number_of_guardians) 
         format.html { redirect_to @student_guardian, notice: "Student guardian was successfully created." }
         format.json { render :show, status: :created, location: @student_guardian }
       else
@@ -52,10 +52,10 @@ class StudentGuardiansController < ApplicationController
   # DELETE /student_guardians/1 or /student_guardians/1.json
   def destroy
     @student_guardian.destroy!
-
+    @student_guardian.guardian.update!(:number_of_students)
+    @student_guardian.student.update!(:number_of_guardians) 
+    
     respond_to do |format|
-        @student_guardian.guardian.decrement!(:number_of_students)
-        @student_guardian.student.decrement!(:number_of_guardians) 
       format.html { redirect_to student_guardians_path, notice: "Student guardian was successfully destroyed.", status: :see_other }
       format.json { head :no_content }
     end
