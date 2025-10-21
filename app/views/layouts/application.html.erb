@@ -18,11 +18,142 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-  </head>
 
+    <!-- Bootstrap CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    >
+    <!-- Bootstrap Icons -->
+    <link 
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" 
+      rel="stylesheet"
+    >
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+  </head>
+    
   <body>
+
+    <nav class="navbar navbar-expand-lg shadow-sm"
+        style="background: linear-gradient(90deg, #ffffff 0%, #f8f8ff 100%); padding: 0.75rem 1.5rem;">
+
+      <div class="container-fluid d-flex justify-content-between align-items-center">
+
+
+        <!-- Left: Logo + Title -->
+        <a class="navbar-brand d-flex align-items-center" href="http://localhost:3000/posts" style="text-decoration: none;">
+          <%= image_tag 'schoollogo.png', style: 'width: 50px; height: 50px; margin-right: 10px; border-radius: 50%;' %>
+          <span style="font-weight: 700; font-size: 1.5rem; color: #b30000;">
+            <i class="bi me-1"></i> School Manager
+          </span>
+        </a>
+
+
+        <!-- Toggle -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <!-- Nav Links -->
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+          <ul class="navbar-nav d-flex gap-4" style="font-weight: 500; font-size: 1.1rem;">
+
+            <li class="nav-item position-relative">
+              <%= link_to students_path, class: "nav-link d-flex align-items-center gap-2", style: "color: #333;" do %>
+                <i class="bi bi-people-fill"></i> Students
+              <% end %>
+            </li>
+
+            <li class="nav-item position-relative">
+              <%= link_to teachers_path, class: "nav-link d-flex align-items-center gap-2", style: "color: #333;" do %>
+                <i class="bi bi-person-badge-fill"></i> Teachers
+              <% end %>
+            </li>
+
+            <li class="nav-item position-relative">
+              <%= link_to sections_path, class: "nav-link d-flex align-items-center gap-2", style: "color: #333;" do %>
+                <i class="bi bi-journal-text"></i> Sections
+              <% end %>
+            </li>
+
+            <li class="nav-item position-relative">
+              <%= link_to departments_path, class: "nav-link d-flex align-items-center gap-2", style: "color: #333;" do %>
+                <i class="bi bi-building"></i> Departments
+              <% end %>
+            </li>
+
+            <li class="nav-item position-relative">
+              <%= link_to subjects_path, class: "nav-link d-flex align-items-center gap-2", style: "color: #333;" do %>
+                <i class="bi bi-book-half"></i> Subjects
+              <% end %>
+            </li>
+
+            <li class="nav-item position-relative">
+              <%= link_to classlists_path, class: "nav-link d-flex align-items-center gap-2", style: "color: #333;" do %>
+                <i class="bi bi-clipboard-check"></i> Classlists
+              <% end %>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hover & Active Effects -->
+    <style>
+      .nav-link {
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: #b30000 !important;
+        transform: translateY(-2px);
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0%;
+        height: 2px;
+        background-color: #b30000;
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .navbar-brand:hover span {
+        color: #a00000;
+      }
+    </style>
+
+
+</body>
+
+
+    <% flash.each do |key, message| %>
+      <div class="alert alert-<%= key == "notice" ? "success" : "danger" %> alert-dismissible fade show shadow-sm mx-3 mt-3 d-flex align-items-center"
+          role="alert"
+          style="border-left: 5px solid <%= key == "notice" ? '#27ae60' : '#e74c3c' %>;">
+        <i class="bi <%= key == "notice" ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill' %> me-2 fs-5"></i>
+        <div class="flex-grow-1">
+          <strong><%= message %></strong>
+        </div>
+        <button type="button" class="btn-close ms-2" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+  
     <%= yield %>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

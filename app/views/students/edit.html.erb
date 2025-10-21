@@ -1,12 +1,13 @@
-<% content_for :title, "Editing student" %>
+<div class="card shadow border-0 mt-4">
+  <div class="card-header text-white" style="background-color: #dc3545;">
+    <h4 class="mb-0">✏️ Edit Student</h4>
+  </div>
+  <div class="card-body p-4">
+    <%= render "form", student: @student %>
 
-<h1>Editing student</h1>
-
-<%= render "form", student: @student %>
-
-<br>
-
-<div>
-  <%= link_to "Show this student", @student %> |
-  <%= link_to "Back to students", students_path %>
+    <div class="mt-4 d-flex gap-2">
+      <%= link_to "Show this student", @student, class: "btn btn-outline-danger" %>
+      <%= link_to "Back to Students", students_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
 </div>

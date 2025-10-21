@@ -2,10 +2,21 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: 5
-  username: <%= ENV["DATABASE_USERNAME"] %>
-  password: <%= ENV["DATABASE_PASSWORD"] %>
-  host: <%= ENV["DATABASE_HOST"] %>
+  username: <%= ENV.fetch("DATABASE_USERNAME", "rails") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD", "secret") %>
+  host: <%= ENV.fetch("DATABASE_HOST", "db") %>
 
 development:
   <<: *default
   database: helloworldapp_development
+
+test:
+  <<: *default
+  database: helloworldapp_test
+
+production:
+  <<: *default
+  database: helloworldapp_production
+  username: <%= ENV.fetch("DATABASE_USERNAME", "rails") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD", "secret") %>
+  host: <%= ENV.fetch("DATABASE_HOST", "db") %>

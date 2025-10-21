@@ -1,31 +1,67 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Students" %>
 
-<h1>List of Students</h1>
+<div class="students-page py-5">
+  <div class="container">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="fw-bold text-danger mb-0 d-flex align-items-center" style="letter-spacing: 0.5px;">
+        <i class="bi bi-people-fill me-2"></i> Students
+      </h1>
+      <%= link_to " Add New Student", new_student_path,
+          class: "btn btn-danger shadow-sm fw-semibold px-4 py-2 rounded-3",
+          style: "background-color: #c0392b; border: none; transition: 0.3s;" %>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Year Level</th>
-      <th>Program</th>
-      <th>Department</th>
-      <th>Number of Units</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @students.each do |student| %>
-      <tr>
-        <td><%= student.name%></td>
-        <td><%= student.year_level%></td>
-        <td><%= student.program%></td>
-        <td><%= student.department.name%></td>
-        <td><%= student.number_of_units%></td>
-        <td><%= link_to "Show this student",student %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <!-- Card Wrapper -->
+    <div class="card border-0 shadow-lg rounded-4 animate-fade-in">
+      <div class="card-body p-4">
+        <!-- Table -->
+        <div class="table-responsive">
+          <table class="table align-middle table-hover mb-0 shadow-sm rounded-3 overflow-hidden">
+            <thead class="table-danger text-center">
+              <tr>
+                <th>Name</th>
+                <th>Year Level</th>
+                <th>Program</th>
+                <th>Department</th>
+                <th>Units</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
 
-<%= link_to "New student", new_student_path %>
+            <tbody class="text-center">
+              <% @students.each do |student| %>
+                <tr class="table-row-hover">
+                  <td class="fw-semibold"><%= student.name %></td>
+                  <td><%= student.year_level %></td>
+                  <td><%= student.program %></td>
+                  <td><%= student.department.name %></td>
+                  <td><%= student.number_of_units %></td>
+                  <td>
+                    <div class="d-flex gap-2 justify-content-center">
+                      <%= link_to student, class: "btn btn-sm d-flex align-items-center gap-1 shadow-sm rounded-3",
+                            style: "background-color: #ff69b4; color: #333; border: none; font-weight: 500; transition: 0.3s;" do %>
+                        <i class="bi bi-eye"></i> Show
+                      <% end %>
+
+                      <%= link_to edit_student_path(student), class: "btn btn-sm d-flex align-items-center gap-1 shadow-sm rounded-3",
+                            style: "background-color: #f1c40f; color: #333; border: none; font-weight: 500; transition: 0.3s;" do %>
+                        <i class="bi bi-pencil-square"></i> Edit
+                      <% end %>
+
+                      <%= link_to student, method: :delete,
+                            class: "btn btn-sm d-flex align-items-center gap-1 shadow-sm rounded-3",
+                            style: "background-color: #e74c3c; color: white; border: none; font-weight: 500; transition: 0.3s;" do %>
+                        <i class="bi bi-trash3"></i> Delete
+                      <% end %>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

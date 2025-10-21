@@ -1,11 +1,14 @@
-<% content_for :title, "New student" %>
+<% content_for :title, "Add New Student" %>
 
-<h1>New student</h1>
+<div class="card shadow border-0 mt-4">
+  <div class="card-header text-white" style="background-color: #dc3545;">
+    <h4 class="mb-0">Add New Student</h4>
+  </div>
+  <div class="card-body p-4">
+    <%= render "form", student: @student %>
 
-<%= render "form", student: @student %>
-
-<br>
-
-<div>
-  <%= link_to "Back to students", students_path %>
+    <div class="mt-4">
+      <%= link_to "Back to Students", students_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
 </div>

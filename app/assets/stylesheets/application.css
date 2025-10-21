@@ -8,3 +8,48 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+.students-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  padding: 2rem;
+}
+
+.card {
+  border-radius: 1rem;
+  border: none;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+
+table {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #f8d7da; 
+  color: #c0392b;
+}
+
+tbody tr:hover {
+  background-color: #fff5f5; 
+  transition: 0.2s ease;
+}
+
+
+.btn-danger:hover {
+  background-color: #a93226 !important;
+  transform: scale(1.05);
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  animation: fadeIn 0.5s ease;
+}
