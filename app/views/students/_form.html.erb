@@ -28,11 +28,6 @@
         <%= f.text_field :program, class: "form-control", placeholder: "Enter program/course" %>
       </div>
 
-      <div class="mb-3">
-        <%= f.label :number_of_units, class: "form-label fw-bold" %>
-        <%= f.number_field :number_of_units, class: "form-control", placeholder: "Enter number of units" %>
-      </div>
-
       <div class="mb-4">
         <%= f.label :department_id, "Department", class: "form-label fw-bold" %>
         <%= f.collection_select :department_id, Department.all, :id, :name,
